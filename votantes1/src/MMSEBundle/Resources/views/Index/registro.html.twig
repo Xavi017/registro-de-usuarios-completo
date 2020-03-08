@@ -1,0 +1,106 @@
+{% extends 'layout.html.twig' %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script>
+        $("#btnsubmit").one("click", function (){
+            var $form = $('#frmsave');
+            $form.submit(function (e) {
+                //Agregamos los campos del formulario
+                var data = $form.serialize();
+                //Realizamos la peticiÃ³n
+                $.ajax({
+                    url: $form.attr('action'),
+                    type: $form.attr('method'),
+                    data: data,
+                    beforeSend: function () {
+                        $("#resp").fadeIn("");
+                        $('#resp').html("<div align='center'><img src='{{asset('public/images/ajax-loaderp.gif')}}'/></div>");
+                    },
+                    success: function (html) {
+                        $("#resp").html(html);
+                        $("#resp").fadeOut(15000);
+                        document.getElementById("frmsave").reset();
+                    }
+                });
+                e.preventDefault();
+            });
+        });
+
+    </script>
+{%endblock%}
+
+{% block body %}
+
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Contact - Alpha by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				{% include 'header.html.twig' %}
+
+			<!-- Main -->
+				<section id="main" class="container 75%">
+					<header>
+						<h2>Control de usuarios</h2>
+						<p>Complete los siguientes campos.</p>
+						<hr>
+                        
+					</header>
+					<div class="box">
+						<form method="post" action="{{path('mmse_savev')}}" id="frmsave">
+						    <div class="row uniform 50%">
+					            <div class="6u 12u(mobilep)">
+                                <label for="ced">Cédula</label>
+                                <input type="text" name="ced" id="ced" required/>
+                                </div>
+                            <div class="6u 12u(mobilep)">
+                                <label for="lugar">¿Que desea registrar?</label>
+                                <select class='form-control' required name='lugar'>
+                                    <option selected disabled value="">Seleccione una opción...</option> 
+                                    <option value="ENTRADA">ENTRADA</option> <option value="SALIDA">SALIDA</option>
+                                </select>
+                            </div>
+                            </div>
+                            
+                            <div class="row uniform">
+								<div class="12u" id="resp">
+								</div>
+						    </div>
+                            <div class="row uniform">
+								<div class="6u 12u(mobilep)">
+									<ul class="actions align-right">
+										<li><input id="btnsubmit" class="button special" type="submit" value="Guardar" /></li>
+									</ul>
+								</div>
+								<div class="6u 12u(mobilep)">
+									<ul class="actions align-left">
+										<li><input class="button" type="reset" value="Limpiar" /></li>
+									</ul>
+								</div>
+							</div>
+                        </form>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				{% include 'footer.html.twig' %}
+
+		</div>
+
+	</body>
+</html>
+{% endblock%}

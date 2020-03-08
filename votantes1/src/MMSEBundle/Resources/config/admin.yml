@@ -1,0 +1,42 @@
+# src/MMSEBundle/Resources/config/admin.yml
+services:
+            
+    #Entidad Administradores
+    mmse.admin.administradores:
+        class: MMSEBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Administrador", label: "Administradores",icon: "%sonata.user.admin.groupicon%" }
+        arguments:
+            - ~
+            - MMSEBundle\Entity\User
+            - ~
+        calls:
+            - [ setTranslationDomain, [MMSEBundle]]     
+
+    #Entidad Usuario
+    mmse.admin.usuario:
+        class: MMSEBundle\Admin\UsuarioAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Usuario", label: "Usuarios registrados",icon: "%sonata.user.admin.groupicon%" }
+        arguments:
+            - ~
+            - MMSEBundle\Entity\Usuario
+            - ~
+        calls:
+            - [ setTranslationDomain, [MMSEBundle]]
+            
+    #Entidad Usuario
+    mmse.admin.controlusuarios:
+        class: MMSEBundle\Admin\ControlusuariosAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Usuario", label: "Control de usuarios",icon: "%sonata.user.admin.groupicon%" }
+        arguments:
+            - ~
+            - MMSEBundle\Entity\Controlusuarios
+            - ~
+        calls:
+            - [ setTranslationDomain, [MMSEBundle]]        
+                      
+    
+      
+  

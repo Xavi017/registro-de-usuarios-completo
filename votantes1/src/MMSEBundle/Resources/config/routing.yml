@@ -1,0 +1,15 @@
+#mmse_homepage:
+#    path:     /hello/{name}
+#    defaults: { _controller: MMSEBundle:Default:index }
+   
+mmse_savev:
+   path:     /savev
+   defaults: { _controller: MMSEBundle:Index:savev }    
+   
+mmse_registro:
+   path:     /registro
+   defaults: { _controller: MMSEBundle:Index:registro }  
+   
+    
+    
+

@@ -1,0 +1,230 @@
+<?php
+// src/AppBundle/Entity/User.php
+
+namespace MMSEBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="usuarios")
+ */
+class Usuario
+{
+   
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    public function __construct()
+    {
+        
+    }
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="cedula", type="float", precision=12, scale=0, nullable=false)
+     */
+    private $cedula;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombres", type="string", length=100)
+     */
+    private $nombres;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apellidos", type="string", length=30, nullable=false)
+     */
+    private $apellidos;
+    
+    /**
+     * @var date
+     *
+     * @ORM\Column(name="creacionAt", type="datetime")
+     */
+    private $creacionAt;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=100)
+     */
+    private $email;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="telefono", type="integer", length=100)
+     */
+    private $telefono;
+    
+    
+    
+    /**
+     * Set creacionAtAt
+     *
+     * @param date $creacionAt
+     * @return Usuario
+     */
+    public function setCreacionAt($creacionAt) {
+        date_default_timezone_set('America/Bogota');
+        $now=new \DateTime("now");
+        $now->format('yyyy-mm-dd hh:ii:ss');
+        $this->creacionAt = $now;
+
+        return $this;
+    }
+
+    /**
+     * Get creacionAt
+     *
+     * @return date 
+     */
+    public function getCreacionAt() {
+        return $this->creacionAt;
+    }
+    /*
+    /**
+     * Set actualizacionAt
+     *
+     * @param date $actualizacionAt
+     * @return Usuario
+     */
+    /*public function setActualizacionAt($actualizacionAt) {
+        $this->actualizacionAt = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * Get actualizacionAt
+     *
+     * @return date 
+     */
+    /*public function getActualizacionAt() {
+        return $this->actualizacionAt;
+    }*/
+
+    /**
+     * Set cedula
+     *
+     * @param float $cedula
+     * @return Usuario
+     */
+    public function setCedula($cedula)
+    {
+        $this->cedula = $cedula;
+
+        return $this;
+    }
+
+    /**
+     * Get cedula
+     *
+     * @return float 
+     */
+    public function getCedula()
+    {
+        return $this->cedula;
+    }
+    
+    /**
+     * Set telefono
+     *
+     * @param integer $telefono
+     * @return Usuario
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Get telefono
+     *
+     * @return integer 
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+    
+    /**
+     * Set email
+     *
+     * @param string $telefono
+     * @return Usuario
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set nombres
+     *
+     * @param string $nombres
+     * @return Usuario
+     */
+    public function setNombres($nombres)
+    {
+        $this->nombres = $nombres;
+
+        return $this;
+    }
+
+    /**
+     * Get nombres
+     *
+     * @return string 
+     */
+    public function getNombres()
+    {
+        return $this->nombres;
+    }
+
+    /**
+     * Set apellidos
+     *
+     * @param string $apellidos
+     * @return Usuario
+     */
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+
+        return $this;
+    }
+
+    /**
+     * Get apellidos
+     *
+     * @return string 
+     */
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+}

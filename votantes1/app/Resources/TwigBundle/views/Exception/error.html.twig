@@ -1,0 +1,6 @@
+{% extends 'layout.html.twig' %}
+
+{%block body%}
+<div class="alert alert-danger" role="alert"><p>Acceso denegado a Role Dependencia</p></div>
+<a class="btn btn-primary" href="{{path('sonata_user_admin_security_logout')}}">Regresar a login</a>
+{%endblock body%}

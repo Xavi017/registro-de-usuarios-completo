@@ -1,0 +1,4 @@
+services:
+#    mmse.example:
+#        class: MMSEBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
